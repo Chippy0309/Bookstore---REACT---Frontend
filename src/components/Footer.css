@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.bg-dark {
+  background-color: #191b29; /* Dark background color */
+}
+
+.text-light {
+  color: #f8f9fa; /* Light text color */
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-md-4 {
+  flex: 1;
+  padding: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem; /* Add margin bottom for better spacing */
+}
+
+h5 {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  flex: 1;
+  padding: 0.3rem;
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 4px;
+  background-color: #fff; /* White background for the input */
+}
+
+.btn-warning {
+  background-color: #ffc107; /* Warning button color */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.social-icons {
+  display: flex; /* Use flex to align icons */
+  justify-content: start; /* Align to start */
+}
+
+.social-icons a {
+  font-size: 24px; /* Adjust icon size */
+}
+
+.social-icons a:hover {
+  color: #ffc107; /* Change color on hover */
+}
+
+.text-center {
+  margin-top: 20px; /* Add top margin for the copyright text */
+}
