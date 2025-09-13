@@ -6,6 +6,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick'; // ✅ For testimonials carousel
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   // Sample book data with prices
@@ -161,9 +162,10 @@ const Home = () => {
 
           {/* Explore Now Button */}
           <div className="flex justify-center mt-10">
+            <Link to={'/all-Books'}>
             <button className="bg-blue-900 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-800 transition">
               EXPLORE NOW
-            </button>
+            </button></Link>
           </div>
         </div>
       </section>

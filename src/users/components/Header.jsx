@@ -75,8 +75,8 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <ul className="md:flex justify-center hidden">
-          <li className="mx-4 cursor-pointer hover:text-gray-400">Home</li>
-          <li className="mx-4 cursor-pointer hover:text-gray-400">Books</li>
+          <Link to={'/'}><li className="mx-4 cursor-pointer hover:text-gray-400">Home</li></Link>
+          <Link to={'/all-Books'}><li className="mx-4 cursor-pointer hover:text-gray-400">Books</li></Link>
           <li className="mx-4 cursor-pointer hover:text-gray-400">Career</li>
           <li className="mx-4 cursor-pointer hover:text-gray-400">Contact</li>
         </ul>
@@ -84,8 +84,8 @@ const Header = () => {
         {/* Mobile Dropdown Menu */}
         {status && (
           <ul className="flex flex-col items-center mt-3 md:hidden">
-            <li className="my-2 cursor-pointer hover:text-gray-400">Home</li>
-            <li className="my-2 cursor-pointer hover:text-gray-400">Books</li>
+            <Link to={'/'}><li className="my-2 cursor-pointer hover:text-gray-400">Home</li></Link>
+            <Link to={'/all-Books'}><li className="my-2 cursor-pointer hover:text-gray-400">Books</li></Link>
             <li className="my-2 cursor-pointer hover:text-gray-400">Career</li>
             <li className="my-2 cursor-pointer hover:text-gray-400">Contact</li>
           </ul>

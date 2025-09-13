@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import { Routes, Route } from 'react-router-dom'
 import Home from './users/pages/Home'
 import Auth from './pages/Auth'
+import AllBooks from './users/pages/AllBooks'
 import PageNotFound from './pages/PageNotFound'
 import Preloader from './components/PreLoader'
 import React, { useState, useEffect } from 'react'
@@ -28,7 +29,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Auth />} />
-        <Route path='/register' element={<Auth />} />
+        <Route path='/register' element={<Auth register />} />
+        <Route path='/all-Books' element={<AllBooks />} />
         <Route path='/*' element={<PageNotFound />} />
       </Routes>
       
