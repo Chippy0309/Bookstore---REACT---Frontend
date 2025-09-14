@@ -8,6 +8,8 @@ import AllBooks from './users/pages/AllBooks'
 import PageNotFound from './pages/PageNotFound'
 import Preloader from './components/PreLoader'
 import React, { useState, useEffect } from 'react'
+import Careers from './users/pages/Careers'
+import ContactUs from './pages/ContactUs'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -31,6 +33,8 @@ function App() {
         <Route path='/login' element={<Auth />} />
         <Route path='/register' element={<Auth register />} />
         <Route path='/all-Books' element={<AllBooks />} />
+        <Route path='/careers' element={<Careers />} />
+        <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/*' element={<PageNotFound />} />
       </Routes>
       

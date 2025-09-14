@@ -1,9 +1,24 @@
 import React, { useState } from 'react'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useNavigate } from 'react-router-dom'
 
 const Auth = () => {
   const [isRegister, setIsRegister] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!email || !password) {
+      alert('Please enter email and password')
+      return
+    }
+    // ✅ Store login flag in localStorage
+    localStorage.setItem('isLoggedIn', 'true')
+    navigate('/all-books') // redirect after login
+  }
 
   return (
     <div id='loginPage' className='flex justify-center items-center min-h-screen bg-gray-800'>
@@ -15,8 +30,10 @@ const Auth = () => {
           <h1 className='text-3xl mb-5 text-gray-300'>BOOK STORE</h1>
           
           {/* Auth Card */}
-          <form className='w-full bg-gray-900 p-10 flex justify-center items-center flex-col rounded-sm'>
-            
+          <form 
+            onSubmit={handleSubmit} 
+            className='w-full bg-gray-900 p-10 flex justify-center items-center flex-col rounded-sm'
+          >
             {/* User Icon */}
             <div 
               style={{width:'70px', height:'70px', borderRadius:'50%'}} 
@@ -45,6 +62,8 @@ const Auth = () => {
               <input 
                 type="text" 
                 placeholder="Email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="p-2 rounded placeholder-gray-600 bg-white w-full" 
               />
             </div>
@@ -53,6 +72,8 @@ const Auth = () => {
               <input 
                 type="password" 
                 placeholder="Password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="p-2 rounded placeholder-gray-600 bg-white w-full" 
               />
             </div>
@@ -67,22 +88,10 @@ const Auth = () => {
 
             {/* Submit Button */}
             <div className="mb-2 w-full">
-              <button className="bg-green-800 text-white w-full p-3 rounded">
+              <button type="submit" className="bg-green-800 text-white w-full p-3 rounded">
                 {isRegister ? 'Register' : 'Login'}
               </button>
             </div>
-
-            {/* Divider (only in Login mode) */}
-            {!isRegister && (
-              <>
-                <p className="text-white my-2">------------------- or -------------------</p>
-                <div className="mb-5 mt-3 w-full">
-                  <button className="bg-white text-black w-full p-3 rounded">
-                    Sign in with Google
-                  </button>
-                </div>
-              </>
-            )}
 
             {/* Switch Auth Mode (Bottom Line) */}
             <p 

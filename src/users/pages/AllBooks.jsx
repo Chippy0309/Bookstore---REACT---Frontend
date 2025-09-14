@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../../components/Footer'
+import { useNavigate } from 'react-router-dom'
 
 const AllBooks = () => {
   const [filterOpen, setFilterOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true'
+    setIsLoggedIn(loggedIn)
+  }, [])
 
   const books = [
     {
@@ -36,6 +44,31 @@ const AllBooks = () => {
     },
   ]
 
+  if (!isLoggedIn) {
+    return (
+      <>
+        <Header />
+        <div className="flex flex-col items-center justify-center min-h-screen  px-4">
+          <img 
+            src="https://cdn-icons-gif.flaticon.com/7920/7920885.gif" 
+            alt="Locked" 
+            className="w-50 h-50 mb-3"
+          />
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+            Please login to access the book collection
+          </h2>
+          <button 
+            onClick={() => navigate('/login')} 
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-800"
+          >
+            Go to Login
+          </button>
+        </div>
+        <Footer />
+      </>
+    )
+  }
+
   return (
     <>
       <Header />
@@ -53,7 +86,6 @@ const AllBooks = () => {
           
           {/* Filters Section */}
           <div className="bg-white p-5 rounded shadow">
-            
             {/* Mobile Toggle */}
             <div
               className="md:hidden flex justify-between items-center cursor-pointer"

@@ -2,10 +2,18 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { faUser, faBars } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom' // ✅ Import Link
+import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
   const [status, setStatus] = useState(false)
+  const navigate = useNavigate()
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn')
+    navigate('/') // ✅ redirect to Home after logout
+  }
 
   return (
     <>
@@ -26,7 +34,7 @@ const Header = () => {
           <h1 className="text-3xl">BOOK STORE</h1>
         </div>
 
-        {/* Social Icons + Login (Visible on md and above) */}
+        {/* Social Icons + Login/Logout (Visible on md and above) */}
         <div className="md:flex justify-end items-center hidden">
           <FontAwesomeIcon
             icon={faInstagram}
@@ -41,14 +49,23 @@ const Header = () => {
             className="me-3 cursor-pointer hover:text-blue-700"
           />
 
-          {/* ✅ Login routes to /login */}
-          <Link
-            to="/login"
-            className="border border-black rounded px-3 py-2 ms-3 flex items-center hover:bg-gray-200"
-          >
-            <FontAwesomeIcon icon={faUser} className="me-2" />
-            Login
-          </Link>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="border border-black rounded px-3 py-2 ms-3 flex items-center bg-red-600 text-white hover:bg-red-700"
+            >
+              <FontAwesomeIcon icon={faUser} className="me-2" />
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="border border-black rounded px-3 py-2 ms-3 flex items-center hover:bg-gray-200"
+            >
+              <FontAwesomeIcon icon={faUser} className="me-2" />
+              Login
+            </Link>
+          )}
         </div>
       </div>
 
@@ -63,31 +80,40 @@ const Header = () => {
             <FontAwesomeIcon icon={faBars} />
           </span>
 
-          {/* ✅ Mobile Login routes to /login */}
-          <Link
-            to="/login"
-            className="border border-white rounded px-3 py-2 ms-3 flex items-center"
-          >
-            <FontAwesomeIcon icon={faUser} className="me-2" />
-            Login
-          </Link>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="border border-white rounded px-3 py-2 ms-3 flex items-center bg-red-600 text-white hover:bg-red-700"
+            >
+              <FontAwesomeIcon icon={faUser} className="me-2" />
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="border border-white rounded px-3 py-2 ms-3 flex items-center"
+            >
+              <FontAwesomeIcon icon={faUser} className="me-2" />
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Desktop Menu */}
         <ul className="md:flex justify-center hidden">
-          <Link to={'/'}><li className="mx-4 cursor-pointer hover:text-gray-400">Home</li></Link>
-          <Link to={'/all-Books'}><li className="mx-4 cursor-pointer hover:text-gray-400">Books</li></Link>
-          <li className="mx-4 cursor-pointer hover:text-gray-400">Career</li>
-          <li className="mx-4 cursor-pointer hover:text-gray-400">Contact</li>
+          <Link to="/"><li className="mx-4 cursor-pointer hover:text-gray-400">Home</li></Link>
+          <Link to="/all-books"><li className="mx-4 cursor-pointer hover:text-gray-400">Books</li></Link>
+          <Link to="/careers"><li className="mx-4 cursor-pointer hover:text-gray-400">Careers</li></Link>
+          <Link to="/contact-us"><li className="mx-4 cursor-pointer hover:text-gray-400">Contact</li></Link>
         </ul>
 
         {/* Mobile Dropdown Menu */}
         {status && (
           <ul className="flex flex-col items-center mt-3 md:hidden">
-            <Link to={'/'}><li className="my-2 cursor-pointer hover:text-gray-400">Home</li></Link>
-            <Link to={'/all-Books'}><li className="my-2 cursor-pointer hover:text-gray-400">Books</li></Link>
-            <li className="my-2 cursor-pointer hover:text-gray-400">Career</li>
-            <li className="my-2 cursor-pointer hover:text-gray-400">Contact</li>
+            <Link to="/"><li className="my-2 cursor-pointer hover:text-gray-400">Home</li></Link>
+            <Link to="/all-books"><li className="my-2 cursor-pointer hover:text-gray-400">Books</li></Link>
+            <Link to="/careers"><li className="my-2 cursor-pointer hover:text-gray-400">Careers</li></Link>
+            <Link to="/contact-us"><li className="my-2 cursor-pointer hover:text-gray-400">Contact</li></Link>
           </ul>
         )}
       </nav>
