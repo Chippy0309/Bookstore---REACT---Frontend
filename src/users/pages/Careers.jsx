@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Careers = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -124,11 +124,21 @@ const Careers = () => {
                 />
                 {job.location}
               </p>
-              <p className="text-gray-600 mb-2"><strong>Role:</strong> {job.role}</p>
-              <p className="text-gray-600 mb-2"><strong>Job Type:</strong> {job.type}</p>
-              <p className="text-gray-600 mb-2"><strong>Salary:</strong> {job.salary}</p>
-              <p className="text-gray-600 mb-2"><strong>Qualification:</strong> {job.qualification}</p>
-              <p className="text-gray-600 mb-4"><strong>Experience:</strong> {job.experience}</p>
+              <p className="text-gray-600 mb-2">
+                <strong>Role:</strong> {job.role}
+              </p>
+              <p className="text-gray-600 mb-2">
+                <strong>Job Type:</strong> {job.type}
+              </p>
+              <p className="text-gray-600 mb-2">
+                <strong>Salary:</strong> {job.salary}
+              </p>
+              <p className="text-gray-600 mb-2">
+                <strong>Qualification:</strong> {job.qualification}
+              </p>
+              <p className="text-gray-600 mb-4">
+                <strong>Experience:</strong> {job.experience}
+              </p>
               <p className="text-gray-700 text-justify">{job.description}</p>
             </div>
           ))}
@@ -137,54 +147,101 @@ const Careers = () => {
 
       {/* Modal */}
       {openModal && selectedJob && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div
+          className="relative z-50"
+          aria-labelledby="modal-title"
+          role="dialog"
+          aria-modal="true"
+        >
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-gray-900/50"
+            className="fixed inset-0 bg-gray-500/75 transition-opacity"
             onClick={closeModal}
           ></div>
 
-          {/* Modal Panel */}
-          <div className="relative bg-gray-800 rounded-lg shadow-xl w-full max-w-lg mx-4 p-6 text-white z-50">
-            <h2 className="text-xl font-bold mb-4">
-              Apply for {selectedJob.title}
-            </h2>
-            <p className="text-sm text-gray-300 mb-6">
-              You are applying for the position of{" "}
-              <span className="font-semibold">{selectedJob.role}</span> located
-              in {selectedJob.location}.
-            </p>
+          {/* Modal Content */}
+          <div className="fixed inset-0 z-50 w-screen overflow-y-auto">
+            <div className="flex md:min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                {/* Title */}
+                <div className="bg-gray-900 p-4 flex justify-between sm:px-6">
+                  <h1 className="text-white text-2xl">Application Form</h1>
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    className="text-white fa-2x cursor-pointer"
+                    onClick={closeModal}
+                  />
+                </div>
 
-            {/* Example form content */}
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="w-full px-3 py-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="w-full px-3 py-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <textarea
-                placeholder="Why do you think you're a good fit?"
-                rows="3"
-                className="w-full px-3 py-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              ></textarea>
-            </form>
+                {/* Body */}
+                <div className="bg-white px-4 pt-3 pb-4 sm:p-6 sm:pb-4">
+                  <div className="grid grid-cols-2">
+                    <div className="p-3">
+                      <div className="mb-3">
+                        <input
+                          type="text"
+                          placeholder="Full Name"
+                          className="p-2 border border-gray-400 rounded w-full"
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <input
+                          type="text"
+                          placeholder="Email Id"
+                          className="p-2 border border-gray-400 rounded w-full"
+                        />
+                      </div>
+                    </div>
 
-            {/* Action Buttons */}
-            <div className="flex justify-end gap-3 mt-6">
-              <button
-                onClick={closeModal}
-                className="px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-500"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 rounded-md bg-green-600 hover:bg-green-500">
-                Submit Application
-              </button>
+                    <div className="p-3">
+                      <div className="mb-3">
+                        <input
+                          type="text"
+                          placeholder="Qualification"
+                          className="p-2 border border-gray-400 rounded w-full"
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <input
+                          type="text"
+                          placeholder="Phone"
+                          className="p-2 border border-gray-400 rounded w-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-3 px-3 w-full">
+                    <textarea
+                      placeholder="Cover Letter"
+                      className="p-2 border border-gray-400 rounded w-full"
+                    ></textarea>
+                  </div>
+                  <div className="mb-3 px-3 w-full">
+                    <p className="text-gray-600 text-sm mb-1">Resume</p>
+                    <input
+                      type="file"
+                      id="fileInput"
+                      className="border border-gray-400 rounded w-full file:bg-gray-400 file:p-2 file:text-white"
+                    />
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="bg-gray-200 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                  <button
+                    type="button"
+                    className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-green-700 sm:ml-3 sm:w-auto"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    type="button"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white hover:bg-orange-600 sm:mt-0 sm:w-auto"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
