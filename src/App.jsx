@@ -10,6 +10,7 @@ import Preloader from './components/PreLoader'
 import React, { useState, useEffect } from 'react'
 import Careers from './users/pages/Careers'
 import ContactUs from './pages/ContactUs'
+import Profile from './users/pages/Profile'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -35,6 +36,7 @@ function App() {
         <Route path='/all-Books' element={<AllBooks />} />
         <Route path='/careers' element={<Careers />} />
         <Route path='/contact-us' element={<ContactUs />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/*' element={<PageNotFound />} />
       </Routes>
       
