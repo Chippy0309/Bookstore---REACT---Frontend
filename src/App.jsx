@@ -11,6 +11,10 @@ import React, { useState, useEffect } from 'react'
 import Careers from './users/pages/Careers'
 import ContactUs from './pages/ContactUs'
 import Profile from './users/pages/Profile'
+import AdminHome from './admin/pages/AdminHome'
+import AdminBook from './admin/pages/AdminBook'
+import AdminCareer from './admin/pages/AdminCareer'
+import AdminSetting from './admin/pages/AdminSetting'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -37,6 +41,10 @@ function App() {
         <Route path='/careers' element={<Careers />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/admin-home' element={<AdminHome />} />
+        <Route path="/admin-books" element={<AdminBook />} />
+        <Route path="/admin-careers" element={<AdminCareer />} />
+        <Route path="/admin-setting" element={<AdminSetting />} />
         <Route path='/*' element={<PageNotFound />} />
       </Routes>
       
